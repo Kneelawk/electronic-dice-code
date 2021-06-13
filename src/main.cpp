@@ -8,7 +8,8 @@
 const uint8_t DIG_1 = 9;
 const uint8_t DIG_2 = 10;
 
-// Display anode control pins
+// Display anode control pins. Note that the analog pins can also function as
+// digital IO pins.
 const uint8_t SEG_A = A3;
 const uint8_t SEG_B = A2;
 const uint8_t SEG_C = 11;
@@ -57,9 +58,10 @@ void setup() {
 void loop() {
     // Roll the dice depending on which dice button has been pressed
     if (digitalRead(BUTTON_D4) == LOW) {
-        // Roll a D4. Note that we're picking a random number between 1 and 5 because the lower end is inclusive but the
-        // upper end is exclusive, meaning that the minimum resulting number would be 1 and the maximum resulting number
-        // would be 4.
+        // Roll a D4. Note that we're picking a random number between 1 and 5
+        // because the lower end is inclusive but the upper end is exclusive,
+        // meaning that the minimum resulting number would be 1 and the maximum
+        // resulting number would be 4.
         display.value = (int8_t) random(1, 4 + 1);
     } else if (digitalRead(BUTTON_D6) == LOW) {
         // Roll a D6
@@ -77,14 +79,16 @@ void loop() {
         // Roll a D20
         display.value = (int8_t) random(1, 20 + 1);
     } else if (digitalRead(BUTTON_D100) == LOW) {
-        // Roll a D100. Note that we roll between 0 (inclusive) and 100 (exclusive) here instead of 1 (inclusive) and
-        // 101 (exclusive) because we can just use '0' to mean 100.
+        // Roll a D100. Note that we roll between 0 (inclusive) and 100
+        // (exclusive) here instead of 1 (inclusive) and 101 (exclusive) because
+        // we can just use '0' to mean 100.
         display.value = (int8_t) random(0, 100);
     }
 
     // Update the display
     display.update();
 
-    // Wait for a millisecond between each display update so as to not waste battery power
+    // Wait for a millisecond between each display update so as to not waste
+    // battery power
     delay(2);
 }

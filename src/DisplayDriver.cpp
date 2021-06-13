@@ -62,20 +62,24 @@ void DisplayDriver::update() {
     } else {
         // Get the current time
         uint64_t now = millis();
-        // Only update the animation frame if the current time is far enough after the previous animation frame
+        // Only update the animation frame if the current time is far enough
+        // after the previous animation frame
         if (now - last_frame >= ANIMATION_FRAME_TIME) {
             // Update the last_frame to indicate this is now the last frame
             last_frame = now;
 
-            // There are only 8 frames in this animation, 0 to 7. Reset the stage if it's too large.
+            // There are only 8 frames in this animation, 0 to 7. Reset the
+            // stage if it's too large.
             if (stage >= 8) {
                 stage = 0;
             }
 
-            // We aren't sure what state the display is in so we just turn off all pins
+            // We aren't sure what state the display is in so we just turn off
+            // all pins
             clearDisplay();
 
-            // Cause the light to spin around the display, determining the current segment based on the current
+            // Cause the light to spin around the display, determining the
+            // current segment based on the current
             // animation frame
             switch (stage) {
                 case 0:
